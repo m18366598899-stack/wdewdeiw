@@ -20,7 +20,7 @@ export default async function ApprovalsPage() {
           <CardDescription>只有你点了同意，这条积分变动才会正式计入总分。</CardDescription>
         </CardHeader>
         <CardContent>
-          <ApprovalList items={(approvals as never[]) || []} unitName={pairRoom.unit_name} />
+          <ApprovalList items={(approvals as never[]) || []} unitName={pairRoom?.unit_name ?? "积分"} />
         </CardContent>
       </Card>
     </div>
