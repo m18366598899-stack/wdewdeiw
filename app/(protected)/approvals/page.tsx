@@ -3,12 +3,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { requirePairRoom } from "@/lib/data";
 
 export default async function ApprovalsPage() {
-  const { supabase, profile, pairRoom } = await requirePairRoom();
+  const { supabase, user, pairRoom } = await requirePairRoom();
 
   const { data: approvals } = await supabase
     .from("approvals")
     .select("id, decision, request:point_requests(*, initiator:profiles!point_requests_initiated_by_fkey(nickname))")
-    .eq("approver_id", profile.id)
+    .eq("approver_id", user.id)
     .eq("decision", "pending")
     .order("created_at", { ascending: true });
 
