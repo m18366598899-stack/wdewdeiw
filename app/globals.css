@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  color-scheme: light;
+}
+
+body {
+  @apply min-h-screen bg-background text-foreground antialiased;
+  background-image:
+    radial-gradient(circle at top left, rgba(255, 223, 232, 0.5), transparent 32%),
+    radial-gradient(circle at top right, rgba(220, 238, 251, 0.55), transparent 28%),
+    linear-gradient(180deg, #fffdf7 0%, #fff8ef 100%);
+}
+
+* {
+  @apply border-border;
+}
+
+.puppy-card {
+  @apply rounded-3xl border border-[#eadfce] bg-white/85 shadow-soft backdrop-blur;
+}
+
+.puppy-doodle {
+  background-size: 22px 22px;
+  background-image: theme("backgroundImage.puppy-grid");
+}
+
+.puppy-ring {
+  @apply ring-4 ring-white/70;
+}
