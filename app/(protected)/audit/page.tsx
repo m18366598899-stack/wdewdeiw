@@ -3,12 +3,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { requirePairRoom } from "@/lib/data";
 
 export default async function AuditPage() {
-  const { supabase, pairRoom } = await requirePairRoom();
+  const { supabase, pairRoom } = (await requirePairRoom()) as any;
 
   const { data: logs } = await supabase
     .from("audit_logs")
     .select("*, actor:profiles!audit_logs_actor_id_fkey(nickname)")
-    .eq("pair_room_id", pairRoom.id)
+    .eq("pair_room_id", pairRoom?.id ?? "")
     .order("created_at", { ascending: false });
 
   return (
@@ -19,7 +19,7 @@ export default async function AuditPage() {
           <CardDescription>发起、同意、拒绝、撤回、解绑等操作都会记录在这里。</CardDescription>
         </CardHeader>
         <CardContent className="space-y-3">
-          {logs?.map((log) => (
+          {(logs ?? []).map((log: any) => (
             <div key={log.id} className="rounded-2xl bg-muted/70 p-4">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <p className="font-medium">{log.actor?.nickname ?? "未知用户"} · {log.action}</p>

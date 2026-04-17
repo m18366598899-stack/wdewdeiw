@@ -25,7 +25,7 @@ export default async function HistoryPage({
   searchParams: Promise<{ status?: string; type?: string }>;
 }) {
   const { status = "all", type = "all" } = await searchParams;
-  const { supabase, profile, pairRoom } = await requirePairRoom();
+  const { supabase, profile, pairRoom } = (await requirePairRoom()) as any;
 
   const { data: requests } = await supabase
     .from("point_requests")

@@ -6,7 +6,7 @@ import { requirePairRoom } from "@/lib/data";
 import { formatPoints, formatRequestStatus, formatRequestType } from "@/lib/utils";
 
 export default async function DashboardPage() {
-  const { supabase, profile, partnerProfile, pairRoom, balance } = await requirePairRoom();
+  const { supabase, profile, partnerProfile, pairRoom, balance } = (await requirePairRoom()) as any;
 
   const [{ data: requests }, { count: pendingCount }] = await Promise.all([
     supabase

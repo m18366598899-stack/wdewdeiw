@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { requirePairRoom } from "@/lib/data";
 
 export default async function ApprovalsPage() {
-  const { supabase, user, pairRoom } = await requirePairRoom();
+  const { supabase, user } = await requirePairRoom();
 
   const { data: approvals } = await supabase
     .from("approvals")
@@ -20,7 +20,7 @@ export default async function ApprovalsPage() {
           <CardDescription>只有你点了同意，这条积分变动才会正式计入总分。</CardDescription>
         </CardHeader>
         <CardContent>
-          <ApprovalList items={(approvals as never[]) || []} unitName={pairRoom?.unit_name ?? "积分"} />
+          <ApprovalList items={(approvals as never[]) || []} unitName="积分" />
         </CardContent>
       </Card>
     </div>
